@@ -1,0 +1,228 @@
+\section{Seaborn Visualization Library}
+
+Seaborn is a Python data visualization library based on Matplotlib. It provides a high-level interface for drawing attractive and informative statistical graphics.
+
+\subsection{Scatter Plot}
+
+\textbf{Definition:} A scatter plot displays the relationship between two numerical variables.
+
+\textbf{Function:} \texttt{seaborn.scatterplot()}
+
+\textbf{Syntax:}
+\begin{verbatim}
+sns.scatterplot(data=df, x='x_column', y='y_column', hue='category',
+                style='marker_style', size='size_variable')
+\end{verbatim}
+
+\textbf{Key Parameters:}
+\begin{itemize}
+    \item \texttt{x}, \texttt{y}: Variables to plot on the x and y axes.
+    \item \texttt{hue}: Categorical variable that maps colors.
+    \item \texttt{style}: Categorical variable for marker style.
+    \item \texttt{size}: Numerical or categorical variable for marker size.
+\end{itemize}
+
+\textbf{Example:}
+\begin{verbatim}
+sns.scatterplot(data=tips, x='total_bill', y='tip', hue='sex', style='smoker')
+\end{verbatim}
+
+\textbf{Best Practices:}
+\begin{itemize}
+    \item Use \texttt{hue}, \texttt{style}, and \texttt{size} to represent additional dimensions.
+    \item Use \texttt{alpha} to reduce overplotting.
+\end{itemize}
+
+\subsection{Distribution Plots}
+
+\subsubsection{Rug Plot}
+\textbf{Definition:} Displays individual data points as small vertical ticks.
+
+\textbf{Function:} \texttt{seaborn.rugplot()}
+
+\textbf{Syntax:}
+\begin{verbatim}
+sns.rugplot(data=df, x='variable')
+\end{verbatim}
+
+\textbf{Use Case:} Often used alongside KDE or histogram plots for highlighting exact data points.
+
+\subsubsection{Hist Plot}
+\textbf{Definition:} Plots the frequency distribution of a numeric variable.
+
+\textbf{Function:} \texttt{seaborn.histplot()}
+
+\textbf{Syntax:}
+\begin{verbatim}
+sns.histplot(data=df, x='variable', bins=30, kde=True)
+\end{verbatim}
+
+\textbf{Key Parameters:}
+\begin{itemize}
+    \item \texttt{bins}: Number of histogram bins.
+    \item \texttt{kde}: Add a KDE curve if \texttt{True}.
+\end{itemize}
+
+\subsubsection{Dis Plot}
+\textbf{Definition:} A figure-level interface to draw distribution plots with optional facets.
+
+\textbf{Function:} \texttt{seaborn.displot()}
+
+\textbf{Syntax:}
+\begin{verbatim}
+sns.displot(data=df, x='variable', kind='hist', col='category')
+\end{verbatim}
+
+\textbf{Kind Options:} \texttt{'hist'}, \texttt{'kde'}, \texttt{'ecdf'}
+
+\textbf{Best Practices:}
+\begin{itemize}
+    \item Use \texttt{displot} for comparing distributions across subsets.
+    \item Combine histogram with KDE for a complete picture.
+\end{itemize}
+
+\subsection{Categorical Plots}
+
+\subsubsection{Box Plot}
+\textbf{Definition:} Shows median, quartiles, and outliers of a distribution.
+
+\textbf{Function:} \texttt{seaborn.boxplot()}
+
+\textbf{Syntax:}
+\begin{verbatim}
+sns.boxplot(data=df, x='category', y='value')
+\end{verbatim}
+
+\textbf{Use Case:} Best for summarizing numeric data grouped by category.
+
+\subsubsection{Violin Plot}
+\textbf{Definition:} Combines box plot and KDE for detailed distribution.
+
+\textbf{Function:} \texttt{seaborn.violinplot()}
+
+\textbf{Syntax:}
+\begin{verbatim}
+sns.violinplot(data=df, x='category', y='value')
+\end{verbatim}
+
+\textbf{Use Case:} Use when the shape of the distribution is important.
+
+\subsubsection{Swarm Plot}
+\textbf{Definition:} Displays all data points while avoiding overlap.
+
+\textbf{Function:} \texttt{seaborn.swarmplot()}
+
+\textbf{Syntax:}
+\begin{verbatim}
+sns.swarmplot(data=df, x='category', y='value')
+\end{verbatim}
+
+\subsubsection{Boxen Plot}
+\textbf{Definition:} Also known as letter-value plot, suited for large datasets.
+
+\textbf{Function:} \texttt{seaborn.boxenplot()}
+
+\textbf{Syntax:}
+\begin{verbatim}
+sns.boxenplot(data=df, x='category', y='value')
+\end{verbatim}
+
+\textbf{Use Case:} Use to visualize heavy-tailed distributions.
+
+\subsection{Comparison Plots}
+
+\subsubsection{Joint Plot}
+\textbf{Definition:} Combines scatterplot with univariate histograms.
+
+\textbf{Function:} \texttt{seaborn.jointplot()}
+
+\textbf{Syntax:}
+\begin{verbatim}
+sns.jointplot(data=df, x='x', y='y', kind='scatter')
+\end{verbatim}
+
+\textbf{Kind Options:} \texttt{'scatter'}, \texttt{'kde'}, \texttt{'hex'}
+
+\subsubsection{Pair Plot}
+\textbf{Definition:} Pairwise relationships between multiple variables.
+
+\textbf{Function:} \texttt{seaborn.pairplot()}
+
+\textbf{Syntax:}
+\begin{verbatim}
+sns.pairplot(data=df, hue='category')
+\end{verbatim}
+
+\textbf{Use Case:} Great for EDA on numeric datasets.
+
+\subsection{Grid Plots}
+
+\subsubsection{Cat Plot}
+\textbf{Definition:} General categorical plot with subplot support.
+
+\textbf{Function:} \texttt{seaborn.catplot()}
+
+\textbf{Syntax:}
+\begin{verbatim}
+sns.catplot(data=df, x='category', y='value', kind='box', col='group')
+\end{verbatim}
+
+\textbf{Kind Options:} \texttt{'strip'}, \texttt{'swarm'}, \texttt{'box'}, \texttt{'violin'}, \texttt{'bar'}, etc.
+
+\subsubsection{PairGrid}
+\textbf{Definition:} Fully customizable pairwise plot grid.
+
+\textbf{Function:} \texttt{seaborn.PairGrid()}
+
+\textbf{Syntax:}
+\begin{verbatim}
+g = sns.PairGrid(df)
+g.map_upper(sns.scatterplot)
+g.map_lower(sns.kdeplot)
+g.map_diag(sns.histplot)
+\end{verbatim}
+
+\textbf{Use Case:} Use when you need control over each subplot.
+
+\subsubsection{FacetGrid}
+\textbf{Definition:} Allows plotting conditional relationships.
+
+\textbf{Function:} \texttt{seaborn.FacetGrid()}
+
+\textbf{Syntax:}
+\begin{verbatim}
+g = sns.FacetGrid(df, col='col_variable', row='row_variable', hue='hue_variable')
+g.map(sns.scatterplot, 'x', 'y')
+\end{verbatim}
+
+\subsection{Matrix Maps}
+
+\subsubsection{Heatmap}
+\textbf{Definition:} Encodes matrix values with colors.
+
+\textbf{Function:} \texttt{seaborn.heatmap()}
+
+\textbf{Syntax:}
+\begin{verbatim}
+sns.heatmap(data=matrix_data, annot=True, fmt='d', cmap='YlGnBu')
+\end{verbatim}
+
+\textbf{Key Parameters:}
+\begin{itemize}
+    \item \texttt{annot}: Show cell values.
+    \item \texttt{fmt}: Value formatting string.
+    \item \texttt{cmap}: Color palette (e.g., \texttt{'coolwarm'}, \texttt{'YlGnBu'}).
+\end{itemize}
+
+\subsubsection{Clustermap}
+\textbf{Definition:} Heatmap + hierarchical clustering.
+
+\textbf{Function:} \texttt{seaborn.clustermap()}
+
+\textbf{Syntax:}
+\begin{verbatim}
+sns.clustermap(data=matrix_data, cmap='coolwarm', standard_scale=1)
+\end{verbatim}
+
+\textbf{Use Case:} Ideal for finding hidden groupings in complex datasets.
+
